@@ -5,7 +5,7 @@ class Day2Part2 {
         var count = 0
         for (entry in input) {
             if (validatePassword(entry)) {
-                count++;
+                count++
             }
         }
         return count
