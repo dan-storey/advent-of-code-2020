@@ -51,7 +51,7 @@ class Day1 {
             }
         }
         val sum = indices.sumBy { expenseReport[it] }
-        if (nums == indices.size && 2020 == sum) {
+        if (indices.size == nums && 2020 == sum) {
             return indices.fold(1) { acc, i -> acc * expenseReport[i] }
         } else if (sum > 2020) {
             return -1
