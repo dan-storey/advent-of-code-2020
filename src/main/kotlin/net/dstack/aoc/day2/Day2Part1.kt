@@ -5,7 +5,7 @@ class Day2Part1 {
         var count = 0
         for (entry in input) {
             if (validatePassword(entry)) {
-                count++;
+                count++
             }
         }
         return count
@@ -16,12 +16,9 @@ class Day2Part1 {
         var count = 0
         for (c in password) {
             if (letter.single() == c) {
-                count++
-
-                if (count > max.toInt()) return false
+                if (++count > max.toInt()) return false
             }
         }
-
         return count >= min.toInt()
     }
 }
