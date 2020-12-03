@@ -17,36 +17,62 @@ internal class Day1Test {
     @Throws(IOException::class)
     fun shouldCalculateProductOfTwo2020() {
         val expenseReport = readExpenseReport("/day1/input.txt")
-        val result = timed { day1.productTwo2020(expenseReport) }
-        println("shouldCalculateProductOfTwo2020 " + result.second + " ms")
-        assertEquals(982464, result.first)
+        val result = day1.productTwo2020(expenseReport)
+        assertEquals(982464, result)
     }
 
     @Test
     @Throws(IOException::class)
     fun shouldCalculateProductOfTwo2020Recursive() {
         val expenseReport = readExpenseReport("/day1/input.txt")
-        val result = timed { day1.productN2020(expenseReport, 2) }
-        println( "shouldCalculateProductOfTwo2020Recursive " + result.second + " ms" )
-        assertEquals(982464, result.first)
+        val result = day1.productN2020(expenseReport, 2)
+        assertEquals(982464, result)
     }
 
     @Test
     @Throws(IOException::class)
     fun shouldCalculateProductOfThree2020() {
         val expenseReport = readExpenseReport("/day1/input.txt")
-        val result = timed { day1.productThree2020(expenseReport) }
-        println("shouldCalculateProductOfThree2020 " + result.second + " ms")
-        assertEquals(162292410, result.first)
+        val result = day1.productThree2020(expenseReport)
+        assertEquals(162292410, result)
     }
 
     @Test
     @Throws(IOException::class)
     fun shouldCalculateProductOfThree2020Recursive() {
         val expenseReport = readExpenseReport("/day1/input.txt")
-        val result = timed { day1.productN2020(expenseReport, 3) }
-        println("shouldCalculateProductOfThree2020Recursive " + result.second + " ms")
-        assertEquals(162292410, result.first)
+        val result = day1.productN2020(expenseReport, 3)
+        assertEquals(162292410, result)
+    }
+
+    @Test
+    @Throws(IOException::class)
+    fun shouldTestPerformanceProductOfThree2020() {
+        val expenseReport = readExpenseReport("/day1/input.txt")
+        val iterations = 10
+        var elapsed: Long = 0
+        repeat(iterations) {
+            val result = timed { day1.productThree2020(expenseReport) }
+            assertEquals(162292410, result.first)
+            elapsed += result.second
+        }
+
+        println("shouldTestPerformanceProductOfThree2020 " + (elapsed / iterations) + " ms")
+    }
+
+    @Test
+    @Throws(IOException::class)
+    fun shouldTestPerformanceProductOfThree2020Recursive() {
+        val expenseReport = readExpenseReport("/day1/input.txt")
+        val iterations = 10
+        var elapsed: Long = 0
+        repeat(iterations) {
+            val result = timed { day1.productN2020(expenseReport, 3) }
+            assertEquals(162292410, result.first)
+            elapsed += result.second
+        }
+
+        println("shouldTestPerformanceProductOfThree2020Recursive " + (elapsed / iterations) + " ms")
     }
 
     @Throws(IOException::class)
