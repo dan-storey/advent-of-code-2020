@@ -10,10 +10,9 @@ class Day5 {
 
     fun calculateMissingSeatId(passes: List<String>): Int {
         val seatIds = calculateSeatIds(passes)
-        for (idx in seatIds.indices) {
-            if (seatIds[idx + 1] - seatIds[idx] > 1) {
-                return seatIds[idx] + 1
-            }
+        for (idx in 1 until seatIds.size) {
+            val expectedSeatId = seatIds[0] + idx
+            if (seatIds[idx] != expectedSeatId) return expectedSeatId
         }
         return -1
     }
