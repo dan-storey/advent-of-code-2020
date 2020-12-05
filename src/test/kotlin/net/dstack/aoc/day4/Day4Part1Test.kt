@@ -31,7 +31,6 @@ internal class Day4Part1Test {
                 currentEntry += line.replace('\r', ' ')
             }
         }
-        entries.add(currentEntry)
         return entries
     }
 
