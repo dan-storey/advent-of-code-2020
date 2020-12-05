@@ -10,23 +10,22 @@ class Day5 {
 
     fun calculateMissingSeatId(passes: List<String>): Int {
         val seatIds = calculateSeatIds(passes)
-        val firstId = seatIds.first()
         for (idx in seatIds.indices) {
-            val expectedSeatId = firstId + idx
-            if (!seatIds.contains(expectedSeatId)) {
-                return expectedSeatId
+            if (seatIds[idx + 1] - seatIds[idx] > 1) {
+                return seatIds[idx] + 1
             }
         }
         return -1
     }
 
-    private fun calculateSeatIds(passes: List<String>): Set<Int> {
-        val seatIds = sortedSetOf<Int>()
+    private fun calculateSeatIds(passes: List<String>): List<Int> {
+        val seatIds = mutableListOf<Int>()
         for (pass in passes) {
             val row = decode(pass.substring(0, 7), 'B')
             val seat = decode(pass.substring(7, 10), 'R')
             seatIds.add(row * 8 + seat)
         }
+        seatIds.sort()
         return seatIds
     }
 

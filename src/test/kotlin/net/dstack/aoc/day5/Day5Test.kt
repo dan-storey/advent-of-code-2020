@@ -24,8 +24,28 @@ internal class Day5Test {
         assertEquals(646, day5.calculateMissingSeatId(lines))
     }
 
+    @Test
+    fun testPart2Performance() {
+        val lines = readFileLines("/day5/input.txt")
+        val iterations = 1000
+        var elapsed: Long = 0
+        repeat(iterations) {
+            val result = timed { day5.calculateMissingSeatId(lines) }
+            assertEquals(646, result.first)
+            elapsed += result.second
+        }
+
+        println("testPart2Performance " + (elapsed / iterations) + " ns")
+    }
+
     private fun readFileLines(filename: String): List<String> {
         val fileContent = Day5Test::class.java.getResource(filename).readText()
         return fileContent.split("\n")
+    }
+
+    private fun <T> timed(f: () -> T): Pair<T, Long> {
+        val start = System.nanoTime()
+        val result = f.invoke()
+        return Pair(result, System.nanoTime() - start)
     }
 }
