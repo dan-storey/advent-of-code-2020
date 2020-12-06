@@ -7,13 +7,8 @@ class Day6 {
     }
 
     fun countYesPart2(answers: List<String>): Int {
-        var yesCount = 0
-        for (answer in answers) {
-            for (question in 'a'..'z') {
-                val groupAnswers = answer.split(' ')
-                if (groupAnswers.filter { it.contains(question) }.size == groupAnswers.size) yesCount++
-            }
-        }
-        return yesCount
+        return answers.map { it.split(' ') }
+                .map { group -> ('a'..'z').filter { question -> group.all { it.contains(question) } }.size }
+                .sum()
     }
 }
