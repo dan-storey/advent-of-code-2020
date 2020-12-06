@@ -7,11 +7,10 @@ class Day6 {
     }
 
     fun countYesPart2(answers: List<String>): Int {
-        var count = 0
-        for (groupAnswers in answers) {
+        return answers.map { groupAnswers ->
             val questions = groupAnswers.replace(" ", "").toCharArray().distinct()
-            count += questions.filter { question -> groupAnswers.split(' ').all { it.contains(question) } }.size
-        }
-        return count
+            val groupAnswersList = groupAnswers.split(' ')
+            questions.filter { question -> groupAnswersList.all { it.contains(question) } }.size
+        }.sum()
     }
 }
