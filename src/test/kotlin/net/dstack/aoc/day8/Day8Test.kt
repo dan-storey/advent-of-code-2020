@@ -46,9 +46,7 @@ internal class Day8Test {
     private fun bruteForcePart2(originalInstructions: MutableList<Pair<String, Int>>) {
         val modifiedInstructions = originalInstructions.withIndex()
                 .filter { "nop" == it.value.first || "jmp" == it.value.first }
-                .map {
-                    Pair(it.index, if ("nop" == it.value.first) Pair("jmp", it.value.second) else Pair("nop", it.value.second))
-                }
+                .map { Pair(it.index, Pair(if ("nop" == it.value.first) "jmp" else "nop", it.value.second)) }
                 .toMutableList()
         var success = false
         while (!success) {
