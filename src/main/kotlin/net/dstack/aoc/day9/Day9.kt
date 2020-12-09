@@ -13,9 +13,11 @@ class Day9 {
     }
 
     private fun sums(nums: List<Long>, target: Long): Boolean {
-        val numSet = nums.toSet()
-        for (num in numSet) {
-            if (numSet.contains(target - num)) return true
+        val visited = mutableSetOf<Long>()
+        for (num in nums) {
+            val required = target - num
+            if (visited.contains(required)) return true
+            visited.add(num)
         }
         return false
     }
@@ -27,6 +29,7 @@ class Day9 {
             for (j in i until data.size) {
                 sum += data[j]
                 if (sum > target) break
+
                 nums.add(data[j])
                 if (sum == target) {
                     nums.sort()
